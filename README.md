@@ -1,46 +1,49 @@
-# Getting Started with Create React App
+# Quikz App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+an app comprising from messaging app and todolist app
 
-In the project directory, you can run:
+### Background
 
-### `npm start`
+Repository for Quikz app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technical Information
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Requirements
 
-### `npm test`
+- Programming Language : Typescript v4.7.4
+- Node : v16.15.1 ([doc](https://nodejs.org/fa/blog/release/v16.15.1/))
+- NPM : v8.11.0 ([doc](https://www.npmjs.com/package/node-v8-version))
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Tech Stack
 
-### `npm run build`
+- App Framework : React with typescript v18.2
+  - official doc react([doc](https://reactjs.org/versions/))
+  - how to install ([doc](https://create-react-app.dev/docs/adding-typescript/))
+- UI Framework : Material ui v5.10.0 ([doc](https://mui.com/))
+- keycloak-js v18.0 ([doc](https://www.keycloak.org/guides#getting-started))
+- react-keycloak/web v3.4.0 ([doc](https://www.npmjs.com/package/@react-keycloak/web))
+- react-redux v8.0.2 ([doc](https://react-redux.js.org/introduction/getting-started))
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### How to run
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Clone repository
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+$ git clone git@github.com:akmalays/quirkz.git
+$ cd Quikz
+$ npm install
+```
 
-### `npm run eject`
+- The whole environment can be run with:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- To running test with coverage, use this:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+ ```
+ npm test -- --watchAll=false --coverage
+ ```
