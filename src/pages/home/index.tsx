@@ -12,7 +12,7 @@ export default function Home() {
     setInterval(() => {
       setProgress((oldProgress) => {
         if (oldProgress === 100) {
-          navigate("/chat");
+          navigate("/dashboard");
         }
         const diff = Math.random() * 10;
         return Math.min(oldProgress + diff, 100);
@@ -26,23 +26,23 @@ export default function Home() {
         <Grid
           container
           sx={{
-            pt: "15vh",
+            pt: "28vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <img alt="quikzImage" src={quikzLogo} />
+          <img alt="quikzImage" src={quikzLogo} width={"30%"} height={"20%"} />
         </Grid>
         <Grid
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            pt: "10vh",
+            pt: "8vh",
           }}
         >
-          <Box sx={{ width: "50%" }}>
+          <Box sx={{ width: "25%" }}>
             <LinearProgress variant="determinate" value={progress} />
           </Box>
         </Grid>
