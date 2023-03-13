@@ -32,7 +32,7 @@ Repository for Quikz app
 
 ```
 $ git clone git@github.com:akmalays/quirkz.git
-$ cd Quikz
+$ cd quikz
 $ npm install
 ```
 
