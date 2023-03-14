@@ -49,10 +49,10 @@ export default function Dashboard() {
           <Grid>
             <Divider
               orientation="vertical"
-              sx={{ backgroundColor: "#E0E0E0", minHeight: "100vh" }}
+              sx={{ backgroundColor: "#E0E0E0" }}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid>
             <TextField
               InputProps={{
                 startAdornment: (
@@ -61,13 +61,14 @@ export default function Dashboard() {
                   </InputAdornment>
                 ),
               }}
+              fullWidth
               variant="filled"
               size="small"
               sx={{
-                width: "81.9vw",
+                width: "81.5vw",
                 "& input": {
                   color: "#ffffff",
-                  mt: -0.5,
+                  mt: -1,
                   mb: 1,
                   ml: 2,
                 },

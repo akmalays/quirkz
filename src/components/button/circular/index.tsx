@@ -8,12 +8,13 @@ import {
 } from "./utils";
 
 export default function CircularButton(props: any) {
-  const { icon, size, color, onClick } = props;
+  const { icon, size, color, onClick, type } = props;
 
   //button style
   const styles: StylesSxProps = {
     button: {
       alignItems: "center",
+      minWidth: getSizeValue(size),
       width: getSizeValue(size),
       height: getSizeValue(size),
       textTransform: "none",
@@ -46,7 +47,7 @@ export default function CircularButton(props: any) {
   return (
     <div>
       <Button sx={styles.button} onClick={onClick}>
-        {circularIcon()}
+        {type === "personal" ? "F" : circularIcon()}
       </Button>
     </div>
   );
