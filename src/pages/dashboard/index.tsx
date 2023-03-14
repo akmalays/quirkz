@@ -2,6 +2,7 @@ import {
   Divider,
   Grid,
   InputAdornment,
+  PopperPlacementType,
   TextField,
   Typography,
 } from "@mui/material";
@@ -13,11 +14,24 @@ import Search from "../../assets/icon/search.svg";
 import { dashboardStyles } from "./styles";
 import { useCallback, useState } from "react";
 import SvgIcon from "../../components/icon/icon";
+import ChatPoppers from "../../components/poppers/chatPoppers";
 
 export default function Dashboard() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [openChatPoppers, setOpenChatPoppers] = useState(false);
+  const [placement, setPlacement] = useState<PopperPlacementType>();
 
-  //open close slider
+  //open chat poppers
+  const handleOpenChatPoppers =
+    (newPlacement: PopperPlacementType) =>
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+      setOpenChatPoppers((prev) => placement !== newPlacement || !prev);
+      setPlacement(newPlacement);
+    };
+
+  //open close
   const toggleSlider = useCallback(() => {
     setIsOpen(!isOpen);
   }, [isOpen]);
@@ -82,7 +96,12 @@ export default function Dashboard() {
               </Grid>
               <Grid>
                 <Typography sx={dashboardStyles.titleText}> Inbox</Typography>
-                <CircularButton size={"medium"} icon={Chat} color={"#ffffff"} />
+                <CircularButton
+                  size={"medium"}
+                  icon={Chat}
+                  color={"#ffffff"}
+                  onClick={handleOpenChatPoppers("top-end")}
+                />
               </Grid>
             </>
           )}
@@ -95,6 +114,11 @@ export default function Dashboard() {
             />
           </Grid>
         </Grid>
+        <ChatPoppers
+          open={openChatPoppers}
+          anchorEl={anchorEl}
+          placement={placement}
+        />
       </Grid>
     </div>
   );
