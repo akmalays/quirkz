@@ -6,10 +6,17 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#2F80ED",
+      main: "#2F80ED", //dark blue
+      light: "#FFFFFF", //white
     },
     secondary: {
-      main: "#4F4F4F",
+      main: "#8785FF", //purple
+    },
+    warning: {
+      main: "#F8B76B", //orange
+    },
+    error: {
+      main: "#EB5757", //lightred
     },
   },
 });
