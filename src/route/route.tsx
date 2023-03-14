@@ -1,11 +1,13 @@
 import { Route, Routes } from "react-router-dom";
-import Chat from "../pages/chat";
+import Dashboard from "../pages/dashboard";
+import Home from "../pages/home";
 
 function MainRoute() {
   return (
     <div>
       <Routes>
-        <Route path="/chat" element={<Chat />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );
