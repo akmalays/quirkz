@@ -1,4 +1,5 @@
 import { Fade, Grid, Paper, Popper } from "@mui/material";
+import ChatDetailContent from "../paperContent/chatDetailContent";
 
 import InboxContent from "../paperContent/inboxContent";
 
@@ -17,9 +18,10 @@ export default function ChatPoppers(props: any) {
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
               <Paper sx={{ width: "600px", height: "600px" }}>
-                <Grid px={"32px"} py={"24px"}>
+                {/* <Grid px={"32px"} py={"24px"}>
                   <InboxContent />
-                </Grid>
+                </Grid> */}
+                <ChatDetailContent />
               </Paper>
             </Fade>
           )}
