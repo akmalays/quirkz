@@ -1,10 +1,26 @@
-import { Divider, Grid, Typography } from "@mui/material";
+import { Divider, Grid, Menu, MenuItem, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useState } from "react";
+import EditMenuItems from "./editMenuItems";
 
 export default function ChatDetailContent() {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClickMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
   return (
     <div>
+      {/* menu component */}
+      <EditMenuItems
+        anchorEl={anchorEl}
+        open={open}
+        handleClose={handleCloseMenu}
+      />
       {/* header section */}
       <Grid position={"sticky"}>
         <Grid
@@ -115,12 +131,14 @@ export default function ChatDetailContent() {
       >
         <Grid>
           <Typography
+            onClick={handleClickMenu}
             sx={{
               pt: 2,
               fontSize: 16,
               fontWeight: 700,
               fontFamily: "Lato",
               color: "#4F4F4F",
+              cursor: "pointer",
             }}
           >
             ...
@@ -260,12 +278,14 @@ export default function ChatDetailContent() {
       >
         <Grid>
           <Typography
+            onClick={handleClickMenu}
             sx={{
               pt: 2,
               fontSize: 16,
               fontWeight: 700,
               fontFamily: "Lato",
               color: "#4F4F4F",
+              cursor: "pointer",
             }}
           >
             ...
