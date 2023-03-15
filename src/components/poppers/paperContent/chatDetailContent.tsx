@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useState } from "react";
 import EditMenuItems from "./editMenuItems";
+import SendChatBar from "./sendChatBar";
 
 export default function ChatDetailContent() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -397,6 +398,31 @@ export default function ChatDetailContent() {
           </Typography>
         </Grid>
       </Grid>
+      <Grid
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+          pt: 1,
+          pb: 2,
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: 15,
+            fontWeight: 700,
+            fontFamily: "Lato",
+            color: "#2F80ED",
+            backgroundColor: "#E9F3FF",
+            px: 4,
+            py: 0.5,
+            borderRadius: 2,
+          }}
+        >
+          New Message
+        </Typography>
+      </Grid>
+      <SendChatBar />
     </div>
   );
 }
