@@ -22,9 +22,6 @@ Repository for Quikz app
   - official doc react([doc](https://reactjs.org/versions/))
   - how to install ([doc](https://create-react-app.dev/docs/adding-typescript/))
 - UI Framework : Material ui v5.10.0 ([doc](https://mui.com/))
-- keycloak-js v18.0 ([doc](https://www.keycloak.org/guides#getting-started))
-- react-keycloak/web v3.4.0 ([doc](https://www.npmjs.com/package/@react-keycloak/web))
-- react-redux v8.0.2 ([doc](https://react-redux.js.org/introduction/getting-started))
 
 ### How to run
 
