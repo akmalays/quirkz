@@ -17,7 +17,9 @@ export default function ChatPoppers(props: any) {
         >
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
-              <Paper sx={{ width: "600px", height: "600px" }}>
+              <Paper
+                sx={{ width: "600px", height: "600px", overflowY: "scroll" }}
+              >
                 {/* <Grid px={"32px"} py={"24px"}>
                   <InboxContent />
                 </Grid> */}
