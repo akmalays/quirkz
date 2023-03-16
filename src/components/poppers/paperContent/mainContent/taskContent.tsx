@@ -1,8 +1,9 @@
 import { Grid, Typography } from "@mui/material";
-import SquareButton from "../../button/square";
-import EditMenuItems from "./editMenuItems";
+import SquareButton from "../../../button/square";
+import EditMenuItems from "../paperComponents/editMenuItems";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useState } from "react";
+import CircularLoading from "../paperComponents/circularLoading";
 
 export default function TaskContent() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -58,6 +59,12 @@ export default function TaskContent() {
           />
         </Grid>
       </Grid>
+      {/* loading */}
+      <Grid display="flex" justifyContent="center" alignItems="center">
+        <CircularLoading />
+      </Grid>
+      {/* Todolist accordion */}
+
       <EditMenuItems
         anchorEl={anchorEl}
         open={open}

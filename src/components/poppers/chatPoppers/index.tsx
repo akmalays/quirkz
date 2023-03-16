@@ -1,8 +1,8 @@
 import { Fade, Grid, Paper, Popper } from "@mui/material";
-import ChatDetailContent from "../paperContent/chatDetailContent";
+import ChatDetailContent from "../paperContent/mainContent/chatDetailContent";
 
-import InboxContent from "../paperContent/inboxContent";
-import TaskContent from "../paperContent/taskContent";
+import InboxContent from "../paperContent/mainContent/inboxContent";
+import TaskContent from "../paperContent/mainContent/taskContent";
 
 export default function ChatPoppers(props: any) {
   const { open, anchorEl, placement, type } = props;

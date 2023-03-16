@@ -2,9 +2,9 @@ import { Divider, Grid, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useState } from "react";
-import EditMenuItems from "./editMenuItems";
-import SendChatBar from "./sendChatBar";
-import LoadingSnackBar from "./loadingSnackBar";
+import EditMenuItems from "../paperComponents/editMenuItems";
+import SendChatBar from "../paperComponents/sendChatBar";
+import LoadingSnackBar from "../paperComponents/loadingSnackBar";
 
 export default function ChatDetailContent() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

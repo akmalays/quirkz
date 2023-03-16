@@ -1,5 +1,5 @@
 import { Grid, TextField } from "@mui/material";
-import SquareButton from "../../button/square";
+import SquareButton from "../../../button/square";
 
 export default function SendChatBar() {
   return (
