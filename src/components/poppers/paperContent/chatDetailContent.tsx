@@ -1,4 +1,4 @@
-import { Divider, Grid, Menu, MenuItem, Typography } from "@mui/material";
+import { Divider, Grid, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useState } from "react";
@@ -22,9 +22,14 @@ export default function ChatDetailContent() {
         anchorEl={anchorEl}
         open={open}
         handleClose={handleCloseMenu}
-        menuColor1={"#2F80ED"}
-        menuColor2={"#EB5757"}
-        width={120}
+        editMenuProps={{
+          menuColor1: "#2F80ED",
+          menuColor2: "#EB5757",
+          width: 120,
+          option1: "Edit",
+          option2: "Delete",
+          fontSize: 15,
+        }}
       />
       {/* header section */}
       <Grid position={"sticky"}>

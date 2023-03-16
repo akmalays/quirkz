@@ -21,7 +21,14 @@ export default function SendChatBar() {
             },
           }}
         />
-        <SquareButton name={"Send"} color={"#2F80ED"} fontSize={16} />
+        <SquareButton
+          squareButtonProps={{
+            name: "Send",
+            color: "#2F80ED",
+            fontSize: 16,
+            width: "76px",
+          }}
+        />
       </Grid>
     </div>
   );

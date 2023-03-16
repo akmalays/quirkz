@@ -39,7 +39,7 @@ export default function TaskContent() {
             >
               My Tasks
             </Typography>
-            <Typography onClick={openTaskMenu}>
+            <Typography onClick={openTaskMenu} sx={{ cursor: "pointer" }}>
               <KeyboardArrowDownIcon
                 sx={{ color: "#4F4F4F", width: 18, height: 18 }}
               />
@@ -47,16 +47,29 @@ export default function TaskContent() {
           </Grid>
         </Grid>
         <Grid pr={1}>
-          <SquareButton name={"New Task"} color={"#2F80ED"} fontSize={13} />
+          <SquareButton
+            squareButtonProps={{
+              name: "New Task",
+              color: "#2F80ED",
+              fontSize: 13,
+              cursor: "pointer",
+              width: "85px",
+            }}
+          />
         </Grid>
       </Grid>
       <EditMenuItems
         anchorEl={anchorEl}
         open={open}
         handleClose={closeTaskMenu}
-        menuColor1={"#4F4F4F"}
-        menuColor2={"#4F4F4F"}
-        width={120}
+        editMenuProps={{
+          menuColor1: "#4F4F4F",
+          menuColor2: "#4F4F4F",
+          width: 200,
+          option1: "Personal Errands",
+          option2: "Urgent To-Do",
+          fontSize: 13,
+        }}
       />
     </div>
   );
