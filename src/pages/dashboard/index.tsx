@@ -19,16 +19,18 @@ import ChatPoppers from "../../components/poppers/chatPoppers";
 export default function Dashboard() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-  const [openChatPoppers, setOpenChatPoppers] = useState(false);
+  const [openPoppers, setOpenPoppers] = useState<boolean>(false);
+  const [type, setType] = useState<string | undefined>("");
   const [placement, setPlacement] = useState<PopperPlacementType>();
 
   //open chat poppers
-  const handleOpenChatPoppers =
-    (newPlacement: PopperPlacementType) =>
+  const handleOpenPoppers =
+    (newPlacement: PopperPlacementType, type?: string) =>
     (event: React.MouseEvent<HTMLButtonElement>) => {
       setAnchorEl(event.currentTarget);
-      setOpenChatPoppers((prev) => placement !== newPlacement || !prev);
+      setOpenPoppers((prev) => placement !== newPlacement || !prev);
       setPlacement(newPlacement);
+      setType(type);
     };
 
   //open close
@@ -93,7 +95,12 @@ export default function Dashboard() {
             <>
               <Grid>
                 <Typography sx={dashboardStyles.titleText}>Task</Typography>
-                <CircularButton size={"medium"} icon={Task} color={"#ffffff"} />
+                <CircularButton
+                  size={"medium"}
+                  icon={Task}
+                  color={"#ffffff"}
+                  onClick={handleOpenPoppers("top-end", "task")}
+                />
               </Grid>
               <Grid>
                 <Typography sx={dashboardStyles.titleText}> Inbox</Typography>
@@ -101,7 +108,7 @@ export default function Dashboard() {
                   size={"medium"}
                   icon={Chat}
                   color={"#ffffff"}
-                  onClick={handleOpenChatPoppers("top-end")}
+                  onClick={handleOpenPoppers("top-end", "chat")}
                 />
               </Grid>
             </>
@@ -116,7 +123,8 @@ export default function Dashboard() {
           </Grid>
         </Grid>
         <ChatPoppers
-          open={openChatPoppers}
+          type={type}
+          open={openPoppers}
           anchorEl={anchorEl}
           placement={placement}
         />

@@ -1,14 +1,14 @@
 import { Button, Typography } from "@mui/material";
 
 export default function SquareButton(props: any) {
-  const { name, color } = props;
+  const { name, color, fontSize } = props;
   return (
     <div>
       <Button
         sx={{
           alignItems: "center",
-          width: "76px",
-          height: "40px",
+          minwidth: "76px",
+          minheight: "40px",
           textTransform: "none",
           backgroundColor: color,
           color: "white",
@@ -22,7 +22,7 @@ export default function SquareButton(props: any) {
       >
         <Typography
           sx={{
-            fontSize: 16,
+            fontSize: fontSize,
             fontWeight: 700,
             fontFamily: "Lato",
             color: "#ffffff",

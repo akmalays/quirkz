@@ -6,7 +6,7 @@ export default function SendChatBar() {
     <div>
       <Grid display="flex" gap={2} px={"24px"} pb={5}>
         <TextField size="small" fullWidth label="Type a new message" />
-        <SquareButton name={"Send"} color={"#2F80ED"} />
+        <SquareButton name={"Send"} color={"#2F80ED"} fontSize={16} />
       </Grid>
     </div>
   );

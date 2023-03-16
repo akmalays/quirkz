@@ -2,9 +2,10 @@ import { Fade, Grid, Paper, Popper } from "@mui/material";
 import ChatDetailContent from "../paperContent/chatDetailContent";
 
 import InboxContent from "../paperContent/inboxContent";
+import TaskContent from "../paperContent/taskContent";
 
 export default function ChatPoppers(props: any) {
-  const { open, anchorEl, placement } = props;
+  const { open, anchorEl, placement, type } = props;
   return (
     <div>
       <Grid mb={1}>
@@ -20,10 +21,12 @@ export default function ChatPoppers(props: any) {
               <Paper
                 sx={{ width: "600px", height: "600px", overflowY: "scroll" }}
               >
+                {type === "chat" && <ChatDetailContent />}
                 {/* <Grid px={"32px"} py={"24px"}>
                   <InboxContent />
                 </Grid> */}
-                <ChatDetailContent />
+                {/* <ChatDetailContent /> */}
+                {type === "task" && <TaskContent />}
               </Paper>
             </Fade>
           )}
