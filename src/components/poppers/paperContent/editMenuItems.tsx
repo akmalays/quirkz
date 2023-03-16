@@ -1,7 +1,7 @@
 import { Divider, Menu, MenuItem, Typography } from "@mui/material";
 
 export default function EditMenuItems(props: any) {
-  const { anchorEl, open, handleClose } = props;
+  const { anchorEl, open, handleClose, menuColor1, menuColor2, width } = props;
   return (
     <div>
       <Menu
@@ -21,12 +21,12 @@ export default function EditMenuItems(props: any) {
           horizontal: "left",
         }}
       >
-        <MenuItem onClick={handleClose} sx={{ width: 120 }}>
+        <MenuItem onClick={handleClose} sx={{ width: width }}>
           <Typography
             sx={{
               fontSize: 15,
               fontFamily: "Lato",
-              color: "#2F80ED",
+              color: menuColor1,
               my: -0.7,
             }}
           >
@@ -39,7 +39,7 @@ export default function EditMenuItems(props: any) {
             sx={{
               fontSize: 15,
               fontFamily: "Lato",
-              color: "#EB5757",
+              color: menuColor2,
               my: -0.7,
             }}
           >

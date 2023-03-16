@@ -22,6 +22,9 @@ export default function ChatDetailContent() {
         anchorEl={anchorEl}
         open={open}
         handleClose={handleCloseMenu}
+        menuColor1={"#2F80ED"}
+        menuColor2={"#EB5757"}
+        width={120}
       />
       {/* header section */}
       <Grid position={"sticky"}>
