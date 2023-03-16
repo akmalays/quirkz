@@ -4,6 +4,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useState } from "react";
 import EditMenuItems from "./editMenuItems";
 import SendChatBar from "./sendChatBar";
+import LoadingSnackBar from "./loadingSnackBar";
 
 export default function ChatDetailContent() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -422,6 +423,7 @@ export default function ChatDetailContent() {
           New Message
         </Typography>
       </Grid>
+      <LoadingSnackBar />
       <SendChatBar />
     </div>
   );
