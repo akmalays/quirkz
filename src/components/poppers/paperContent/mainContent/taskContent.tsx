@@ -12,6 +12,8 @@ import Clock from "../../../../assets/icon/clock.svg";
 export default function TaskContent() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [anchorAccord, setAnchorAccord] = useState<null | HTMLElement>(null);
+  const [isAccordionOpen, setIsAccordionOpen] = useState<boolean>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
   const [date, setDate] = useState<string>("");
   const openEl = Boolean(anchorEl);
   const openAccord = Boolean(anchorAccord);
@@ -22,6 +24,9 @@ export default function TaskContent() {
     type === "accord"
       ? setAnchorAccord(event.currentTarget)
       : setAnchorEl(event.currentTarget);
+  };
+  const openAccordion = () => {
+    setIsAccordionOpen(!isAccordionOpen);
   };
   const closeAccordMenu = () => {
     setAnchorAccord(null);
@@ -35,30 +40,39 @@ export default function TaskContent() {
   const dataValue = [
     {
       task: "Cross-reference with Jeanne for Case #192813",
-      date: "2023-03-02",
+      date: "2023-03-25",
       desc: "Homeworks needed to be checked are as follows : Client Profile Questionnaire, Passport Requirements and Images, Personal Documents.",
     },
     {
       task: "Check Data",
-      date: "2023-03-02",
+      date: "2023-03-23",
       desc: "check date today, asap!",
     },
     {
       task: "Review Code",
-      date: "2023-03-08",
+      date: "2023-03-28",
       desc: "make sure code run correctly!",
     },
     {
       task: "Create pr Evidence",
-      date: "2023-03-09",
+      date: "2023-03-26",
       desc: "add images and pr video evidence for latest pr #11922",
     },
     {
       task: "101 Meet With UX Lead",
-      date: "2023-03-22",
+      date: "2023-03-29",
       desc: "alignment about latest ux new updates",
     },
   ];
+  //func to count day diff from input Date
+  const dayDiff = (inputDate: string) => {
+    const dateNow = new Date();
+    const dateInput = new Date(inputDate);
+
+    const timeDiff = dateInput.getTime() - dateNow.getTime();
+    const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return dayDiff;
+  };
   return (
     <div>
       {/* header */}
@@ -113,7 +127,11 @@ export default function TaskContent() {
         <Grid px={1} pb={1}>
           <Grid display="flex" justifyContent="space-between">
             <Grid display="flex" alignItems={"center"} pl={1}>
-              <Checkbox />
+              <Checkbox
+                sx={{ borderColor: "#4F4F4F", borderWidth: 0.5 }}
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+              />
               <Typography
                 sx={{
                   fontSize: 13,
@@ -122,6 +140,7 @@ export default function TaskContent() {
                   color: "#4F4F4F",
                   maxWidth: 250,
                   textAlign: "justify",
+                  textDecoration: isChecked === true ? "line-through" : "none",
                 }}
               >
                 {value.task}
@@ -136,7 +155,7 @@ export default function TaskContent() {
                     color: "#EB5757",
                   }}
                 >
-                  2 Days Left
+                  {`${dayDiff(value.date)} Days Left`}
                 </Typography>
                 <Typography
                   sx={{
@@ -145,11 +164,15 @@ export default function TaskContent() {
                     color: "#4F4F4F",
                   }}
                 >
-                  {date}
+                  {value.date}
                 </Typography>
               </Grid>
               <Grid display="flex" alignItems={"center"} gap={0.5}>
-                <ExpandMoreIcon sx={{ color: "#4F4F4F", cursor: "pointer" }} />
+                <Typography onClick={openAccordion}>
+                  <ExpandMoreIcon
+                    sx={{ color: "#4F4F4F", cursor: "pointer" }}
+                  />
+                </Typography>
                 <Typography
                   onClick={(event) => openTaskMenu(event, "accord")}
                   sx={{
@@ -157,7 +180,7 @@ export default function TaskContent() {
                     fontWeight: 700,
                     fontFamily: "Lato",
                     color: "#4F4F4F",
-                    pb: 1,
+                    pb: 2,
                     cursor: "pointer",
                   }}
                 >
@@ -167,38 +190,40 @@ export default function TaskContent() {
             </Grid>
           </Grid>
           {/* accordion content */}
-          <Grid px={6}>
-            <Grid display="flex" gap={1} alignItems="center" py={0.5}>
-              <SvgIcon SvgIcon icon={Clock} width={"20px"} height={"20px"} />
-              <TextField
-                sx={{
-                  "& input": {
+          {isAccordionOpen && (
+            <Grid px={6}>
+              <Grid display="flex" gap={1} alignItems="center" py={0.5}>
+                <SvgIcon SvgIcon icon={Clock} width={"20px"} height={"20px"} />
+                <TextField
+                  sx={{
+                    "& input": {
+                      fontFamily: "Lato",
+                      fontSize: 14,
+                      color: "#4F4F4F",
+                    },
+                  }}
+                  type="date"
+                  placeholder="Set Date"
+                  size="small"
+                  value={value.date}
+                  onChange={onDateChange}
+                />
+              </Grid>
+              <Grid display="flex" gap={1} alignItems="center" py={1} pb={2}>
+                <SvgIcon SvgIcon icon={Pencil} width={"20px"} height={"20px"} />
+                <Typography
+                  sx={{
+                    fontSize: 12,
                     fontFamily: "Lato",
-                    fontSize: 14,
                     color: "#4F4F4F",
-                  },
-                }}
-                type="date"
-                placeholder="Set Date"
-                size="small"
-                value={value.date}
-                onChange={onDateChange}
-              />
+                    maxWidth: 400,
+                  }}
+                >
+                  {value.desc}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid display="flex" gap={1} alignItems="center" py={1} pb={2}>
-              <SvgIcon SvgIcon icon={Pencil} width={"20px"} height={"20px"} />
-              <Typography
-                sx={{
-                  fontSize: 12,
-                  fontFamily: "Lato",
-                  color: "#4F4F4F",
-                  maxWidth: 400,
-                }}
-              >
-                {value.desc}
-              </Typography>
-            </Grid>
-          </Grid>
+          )}
           <Grid px={2}>
             <Divider />
           </Grid>
