@@ -29,6 +29,7 @@ export default function ChatDetailContent() {
           option1: "Edit",
           option2: "Delete",
           fontSize: 15,
+          fontWeight: 700,
         }}
       />
       {/* header section */}
