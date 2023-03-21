@@ -83,6 +83,11 @@ export default function TaskContent() {
       date: "2023-03-29",
       desc: "alignment about latest ux new updates",
     },
+    {
+      id: 6,
+      task: "101 Meet With Mr. Lee",
+      date: "2023-03-25",
+    },
   ];
   //func to count day diff from input Date
   const dayDiff = (inputDate: string) => {
@@ -247,7 +252,7 @@ export default function TaskContent() {
                     maxWidth: 400,
                   }}
                 >
-                  {value.desc}
+                  {value.desc ? value.desc : "No Description"}
                 </Typography>
               </Grid>
             </Grid>
