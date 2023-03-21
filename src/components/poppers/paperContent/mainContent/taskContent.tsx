@@ -12,8 +12,12 @@ import Clock from "../../../../assets/icon/clock.svg";
 export default function TaskContent() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [anchorAccord, setAnchorAccord] = useState<null | HTMLElement>(null);
-  const [isAccordionOpen, setIsAccordionOpen] = useState<boolean>(false);
-  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [clickedIndex, setClickedIndex] = useState<{ [key: number]: boolean }>(
+    {}
+  );
+  const [clickedCheckbox, setClickedCheckbox] = useState<{
+    [key: number]: boolean;
+  }>({});
   const [date, setDate] = useState<string>("");
   const openEl = Boolean(anchorEl);
   const openAccord = Boolean(anchorAccord);
@@ -25,9 +29,19 @@ export default function TaskContent() {
       ? setAnchorAccord(event.currentTarget)
       : setAnchorEl(event.currentTarget);
   };
-  const openAccordion = () => {
-    setIsAccordionOpen(!isAccordionOpen);
+  //handle clicked index from mapped data
+  const handleClick = (index: number, type?: string) => () => {
+    type === "checkbox"
+      ? setClickedCheckbox((state) => ({
+          ...state,
+          [index]: !state[index],
+        }))
+      : setClickedIndex((state) => ({
+          ...state,
+          [index]: !state[index],
+        }));
   };
+
   const closeAccordMenu = () => {
     setAnchorAccord(null);
   };
@@ -37,28 +51,34 @@ export default function TaskContent() {
   const onDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
   };
+
   const dataValue = [
     {
+      id: 1,
       task: "Cross-reference with Jeanne for Case #192813",
       date: "2023-03-25",
       desc: "Homeworks needed to be checked are as follows : Client Profile Questionnaire, Passport Requirements and Images, Personal Documents.",
     },
     {
+      id: 2,
       task: "Check Data",
       date: "2023-03-23",
       desc: "check date today, asap!",
     },
     {
+      id: 3,
       task: "Review Code",
       date: "2023-03-28",
       desc: "make sure code run correctly!",
     },
     {
+      id: 4,
       task: "Create pr Evidence",
       date: "2023-03-26",
       desc: "add images and pr video evidence for latest pr #11922",
     },
     {
+      id: 5,
       task: "101 Meet With UX Lead",
       date: "2023-03-29",
       desc: "alignment about latest ux new updates",
@@ -123,14 +143,14 @@ export default function TaskContent() {
         <CircularLoading />
       </Grid> */}
       {/* Todolist accordion */}
-      {dataValue.map((value) => (
-        <Grid px={1} pb={1}>
+      {dataValue.map((value, index) => (
+        <Grid px={1} pb={1} key={index}>
           <Grid display="flex" justifyContent="space-between">
             <Grid display="flex" alignItems={"center"} pl={1}>
               <Checkbox
                 sx={{ borderColor: "#4F4F4F", borderWidth: 0.5 }}
-                checked={isChecked}
-                onChange={() => setIsChecked(!isChecked)}
+                checked={clickedCheckbox[index] ? true : false}
+                onChange={handleClick(index, "checkbox")}
               />
               <Typography
                 sx={{
@@ -140,7 +160,9 @@ export default function TaskContent() {
                   color: "#4F4F4F",
                   maxWidth: 250,
                   textAlign: "justify",
-                  textDecoration: isChecked === true ? "line-through" : "none",
+                  textDecoration: clickedCheckbox[index]
+                    ? "line-through"
+                    : "none",
                 }}
               >
                 {value.task}
@@ -168,7 +190,7 @@ export default function TaskContent() {
                 </Typography>
               </Grid>
               <Grid display="flex" alignItems={"center"} gap={0.5}>
-                <Typography onClick={openAccordion}>
+                <Typography onClick={handleClick(index)}>
                   <ExpandMoreIcon
                     sx={{ color: "#4F4F4F", cursor: "pointer" }}
                   />
@@ -190,7 +212,7 @@ export default function TaskContent() {
             </Grid>
           </Grid>
           {/* accordion content */}
-          {isAccordionOpen && (
+          {clickedIndex[index] ? (
             <Grid px={6}>
               <Grid display="flex" gap={1} alignItems="center" py={0.5}>
                 <SvgIcon SvgIcon icon={Clock} width={"20px"} height={"20px"} />
@@ -223,7 +245,7 @@ export default function TaskContent() {
                 </Typography>
               </Grid>
             </Grid>
-          )}
+          ) : null}
           <Grid px={2}>
             <Divider />
           </Grid>
