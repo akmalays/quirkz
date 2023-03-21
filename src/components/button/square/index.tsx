@@ -1,18 +1,19 @@
 import { Button, Typography } from "@mui/material";
 
 export default function SquareButton(props: any) {
-  const { name, color } = props;
+  const { squareButtonProps } = props;
   return (
     <div>
       <Button
         sx={{
           alignItems: "center",
-          width: "76px",
-          height: "40px",
-          textTransform: "none",
-          backgroundColor: color,
-          color: "white",
           cursor: "pointer",
+          minwidth: "76px",
+          width: squareButtonProps.width,
+          minheight: "40px",
+          textTransform: "none",
+          backgroundColor: squareButtonProps.color,
+          color: "white",
           borderRadius: 1,
           "&:hover": {
             backgroundColor: "#215B9D",
@@ -22,13 +23,13 @@ export default function SquareButton(props: any) {
       >
         <Typography
           sx={{
-            fontSize: 16,
+            fontSize: squareButtonProps.fontSize,
             fontWeight: 700,
             fontFamily: "Lato",
             color: "#ffffff",
           }}
         >
-          {name}
+          {squareButtonProps.name}
         </Typography>
       </Button>
     </div>

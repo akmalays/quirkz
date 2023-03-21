@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import CircularButton from "../../button/circular";
+import CircularButton from "../../../button/circular";
 import WhitePerson from "../../../assets/icon/person_white.svg";
 import BlackPerson from "../../../assets/icon/person_black.svg";
 

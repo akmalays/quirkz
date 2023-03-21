@@ -1,9 +1,10 @@
-import { Divider, Grid, Menu, MenuItem, Typography } from "@mui/material";
+import { Divider, Grid, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useState } from "react";
-import EditMenuItems from "./editMenuItems";
-import SendChatBar from "./sendChatBar";
+import EditMenuItems from "../paperComponents/editMenuItems";
+import SendChatBar from "../paperComponents/sendChatBar";
+import LoadingSnackBar from "../paperComponents/loadingSnackBar";
 
 export default function ChatDetailContent() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -21,6 +22,15 @@ export default function ChatDetailContent() {
         anchorEl={anchorEl}
         open={open}
         handleClose={handleCloseMenu}
+        editMenuProps={{
+          menuColor1: "#2F80ED",
+          menuColor2: "#EB5757",
+          width: 120,
+          option1: "Edit",
+          option2: "Delete",
+          fontSize: 15,
+          fontWeight: 700,
+        }}
       />
       {/* header section */}
       <Grid position={"sticky"}>
@@ -422,6 +432,7 @@ export default function ChatDetailContent() {
           New Message
         </Typography>
       </Grid>
+      <LoadingSnackBar />
       <SendChatBar />
     </div>
   );
