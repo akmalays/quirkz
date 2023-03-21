@@ -3,8 +3,8 @@ import SquareButton from "../../../button/square";
 import EditMenuItems from "../paperComponents/editMenuItems";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useState } from "react";
-import CircularLoading from "../paperComponents/circularLoading";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import SvgIcon from "../../../icon/icon";
 import Pencil from "../../../../assets/icon/pencil.svg";
 import Clock from "../../../../assets/icon/clock.svg";
@@ -191,9 +191,15 @@ export default function TaskContent() {
               </Grid>
               <Grid display="flex" alignItems={"center"} gap={0.5}>
                 <Typography onClick={handleClick(index)}>
-                  <ExpandMoreIcon
-                    sx={{ color: "#4F4F4F", cursor: "pointer" }}
-                  />
+                  {clickedIndex[index] ? (
+                    <ExpandLessIcon
+                      sx={{ color: "#4F4F4F", cursor: "pointer" }}
+                    />
+                  ) : (
+                    <ExpandMoreIcon
+                      sx={{ color: "#4F4F4F", cursor: "pointer" }}
+                    />
+                  )}
                 </Typography>
                 <Typography
                   onClick={(event) => openTaskMenu(event, "accord")}
