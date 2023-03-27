@@ -8,7 +8,7 @@ import {
 } from "./utils";
 
 export default function CircularButton(props: any) {
-  const { icon, size, color, onClick, type } = props;
+  const { icon, size, iconSize, color, onClick, type } = props;
 
   //button style
   const styles: StylesSxProps = {
@@ -29,15 +29,15 @@ export default function CircularButton(props: any) {
     },
   };
 
-  function circularIcon() {
-    return (
+  function circularIcon(type: string) {
+    return type === "none" ? null : (
       <div>
         <Icon sx={{ pr: getIconPadRight(size), pb: getIconPadBottom(size) }}>
           <img
             alt="circular icon"
             src={icon}
-            width={getIconSizeValue(size)}
-            height={getIconSizeValue(size)}
+            width={getIconSizeValue(iconSize)}
+            height={getIconSizeValue(iconSize)}
           />
         </Icon>
       </div>
@@ -47,7 +47,7 @@ export default function CircularButton(props: any) {
   return (
     <div>
       <Button sx={styles.button} onClick={onClick}>
-        {type === "personal" ? "F" : circularIcon()}
+        {type === "personal" ? "" : circularIcon(type)}
       </Button>
     </div>
   );

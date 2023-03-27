@@ -6,21 +6,21 @@ export function getSizeValue(size: string) {
       return "60px";
     case "large":
       return "68px";
-    default:
-      return "34px";
+    case "custom":
+      return "68px";
   }
 }
 
-export function getIconSizeValue(size: string) {
-  switch (size) {
+export function getIconSizeValue(iconSize: string) {
+  switch (iconSize) {
     case "small":
       return "18px";
     case "medium":
       return "26px";
     case "large":
       return "56px";
-    default:
-      return "46px";
+    case "custom":
+      return "30px";
   }
 }
 
@@ -32,8 +32,8 @@ export function getIconPadRight(size: string) {
       return 0.5;
     case "large":
       return 4;
-    default:
-      return 4;
+    case "custom":
+      return 1;
   }
 }
 
@@ -45,7 +45,7 @@ export function getIconPadBottom(size: string) {
       return 0.2;
     case "large":
       return 3;
-    default:
-      return 5;
+    case "custom":
+      return 0.5;
   }
 }

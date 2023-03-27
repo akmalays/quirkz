@@ -96,7 +96,9 @@ export default function TaskContent() {
 
     const timeDiff = dateInput.getTime() - dateNow.getTime();
     const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    return dayDiff;
+    return dayDiff >= 0
+      ? `${dayDiff} days left`
+      : `past due by ${dayDiff} day `;
   };
   return (
     <div>
@@ -182,7 +184,7 @@ export default function TaskContent() {
                     color: "#EB5757",
                   }}
                 >
-                  {`${dayDiff(value.date)} Days Left`}
+                  {`${dayDiff(value.date)}`}
                 </Typography>
                 <Typography
                   sx={{

@@ -10,6 +10,8 @@ import CircularButton from "../../components/button/circular";
 import Quicks from "../../assets/icon/quicks.svg";
 import Chat from "../../assets/icon/chat.svg";
 import Task from "../../assets/icon/task.svg";
+import Chat_White from "../../assets/icon/chat_white.svg";
+import Task_White from "../../assets/icon/task_white.svg";
 import Search from "../../assets/icon/search.svg";
 import { dashboardStyles } from "./styles";
 import { useCallback, useState } from "react";
@@ -21,6 +23,7 @@ export default function Dashboard() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [openPoppers, setOpenPoppers] = useState<boolean>(false);
   const [type, setType] = useState<string | undefined>("");
+  const [isActive, setIsActive] = useState<boolean>(false);
   const [placement, setPlacement] = useState<PopperPlacementType>();
 
   //open chat poppers
@@ -31,6 +34,7 @@ export default function Dashboard() {
       setOpenPoppers((prev) => placement !== newPlacement || !prev);
       setPlacement(newPlacement);
       setType(type);
+      setIsActive(true);
     };
 
   //open close
@@ -94,33 +98,70 @@ export default function Dashboard() {
           {isOpen && (
             <>
               <Grid>
-                <Typography sx={dashboardStyles.titleText}>Task</Typography>
+                <Typography sx={dashboardStyles.titleText}>
+                  {type === "chat" ? "Task" : "Chat"}
+                </Typography>
                 <CircularButton
                   size={"medium"}
-                  icon={Task}
+                  iconSize={"medium"}
+                  icon={type === "chat" ? Task : Chat}
                   color={"#ffffff"}
-                  onClick={handleOpenPoppers("top-end", "task")}
+                  onClick={
+                    type === "chat"
+                      ? handleOpenPoppers("top-end", "task")
+                      : handleOpenPoppers("top-end", "chat")
+                  }
                 />
               </Grid>
               <Grid>
-                <Typography sx={dashboardStyles.titleText}> Inbox</Typography>
-                <CircularButton
-                  size={"medium"}
-                  icon={Chat}
-                  color={"#ffffff"}
-                  onClick={handleOpenPoppers("top-end", "chat")}
-                />
+                <Typography sx={dashboardStyles.titleText}>
+                  {" "}
+                  {type === "chat" ? "Chat" : "Task"}
+                </Typography>
+                {isActive ? (
+                  <Grid display="flex">
+                    <CircularButton
+                      type={"none"}
+                      size={"large"}
+                      color={"#4F4F4F"}
+                    />
+                    <Grid zIndex={1000} ml={-7}>
+                      <CircularButton
+                        size={"custom"}
+                        iconSize={"custom"}
+                        icon={type === "chat" ? Chat_White : Task_White}
+                        color={type === "chat" ? "#8785FF" : "#F8B76B"}
+                        onClick={
+                          type === "chat"
+                            ? handleOpenPoppers("top-end", "chat")
+                            : handleOpenPoppers("top-end", "task")
+                        }
+                      />
+                    </Grid>
+                  </Grid>
+                ) : (
+                  <CircularButton
+                    size={"medium"}
+                    iconSize={"medium"}
+                    icon={Chat}
+                    color={"#ffffff"}
+                    onClick={handleOpenPoppers("top-end", "chat")}
+                  />
+                )}
               </Grid>
             </>
           )}
-          <Grid pt={3}>
-            <CircularButton
-              onClick={toggleSlider}
-              size={"large"}
-              icon={Quicks}
-              color={"#2F80ED"}
-            />
-          </Grid>
+          {isActive ? null : (
+            <Grid pt={3}>
+              <CircularButton
+                onClick={toggleSlider}
+                size={"large"}
+                iconSize={"large"}
+                icon={Quicks}
+                color={"#2F80ED"}
+              />
+            </Grid>
+          )}
         </Grid>
         <ChatPoppers
           type={type}

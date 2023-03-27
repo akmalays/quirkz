@@ -38,12 +38,14 @@ export default function InboxContent() {
           <Grid display="flex">
             <CircularButton
               size={"small"}
+              iconSize={"small"}
               icon={BlackPerson}
               color={"#E0E0E0"}
             />
             <Grid zIndex={1000} ml={-2}>
               <CircularButton
                 size={"small"}
+                iconSize={"small"}
                 icon={WhitePerson}
                 color={"#2F80ED"}
               />
@@ -98,12 +100,14 @@ export default function InboxContent() {
           <Grid display="flex">
             <CircularButton
               size={"small"}
+              iconSize={"small"}
               icon={BlackPerson}
               color={"#E0E0E0"}
             />
             <Grid zIndex={1000} ml={-2}>
               <CircularButton
                 size={"small"}
+                iconSize={"small"}
                 icon={WhitePerson}
                 color={"#2F80ED"}
               />
@@ -158,12 +162,14 @@ export default function InboxContent() {
           <Grid display="flex">
             <CircularButton
               size={"small"}
+              iconSize={"small"}
               icon={BlackPerson}
               color={"#E0E0E0"}
             />
             <Grid zIndex={1000} ml={-2}>
               <CircularButton
                 size={"small"}
+                iconSize={"small"}
                 icon={WhitePerson}
                 color={"#2F80ED"}
               />
@@ -218,6 +224,7 @@ export default function InboxContent() {
           <Grid px={1}>
             <CircularButton
               size={"small"}
+              iconSize={"small"}
               icon={WhitePerson}
               color={"#2F80ED"}
               type="personal"
