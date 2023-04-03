@@ -32,10 +32,28 @@ export default function Dashboard() {
     (event: React.MouseEvent<HTMLButtonElement>) => {
       setAnchorEl(event.currentTarget);
       setOpenPoppers((prev) => placement !== newPlacement || !prev);
+
       setPlacement(newPlacement);
       setType(type);
       setIsActive(true);
     };
+
+  //switch toggler
+  const switchSetType = (type: string = "chat") => {
+    type === "chat" ? setType("task") : setType("chat");
+  };
+
+  // switch menu open
+  const switchMenuOpen = (type: string) => {
+    if (type === "chat") {
+      return handleOpenPoppers("top-end", "chat");
+    } else {
+      return handleOpenPoppers("top-end", "task");
+    }
+  };
+
+  console.log(isActive, "active");
+  console.log(isOpen, "open");
 
   //open close
   const toggleSlider = useCallback(() => {
@@ -106,10 +124,8 @@ export default function Dashboard() {
                   iconSize={"medium"}
                   icon={type === "chat" ? Task : Chat}
                   color={"#ffffff"}
-                  onClick={
-                    type === "chat"
-                      ? handleOpenPoppers("top-end", "task")
-                      : handleOpenPoppers("top-end", "chat")
+                  onClick={() =>
+                    isActive ? switchSetType(type as string) : null
                   }
                 />
               </Grid>
@@ -131,11 +147,7 @@ export default function Dashboard() {
                         iconSize={"custom"}
                         icon={type === "chat" ? Chat_White : Task_White}
                         color={type === "chat" ? "#8785FF" : "#F8B76B"}
-                        onClick={
-                          type === "chat"
-                            ? handleOpenPoppers("top-end", "chat")
-                            : handleOpenPoppers("top-end", "task")
-                        }
+                        onClick={switchMenuOpen(type as string)}
                       />
                     </Grid>
                   </Grid>
@@ -143,9 +155,9 @@ export default function Dashboard() {
                   <CircularButton
                     size={"medium"}
                     iconSize={"medium"}
-                    icon={Chat}
+                    icon={type === "chat" ? Chat : Task}
                     color={"#ffffff"}
-                    onClick={handleOpenPoppers("top-end", "chat")}
+                    onClick={switchMenuOpen(type as string)}
                   />
                 )}
               </Grid>
