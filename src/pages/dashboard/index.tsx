@@ -1,4 +1,5 @@
 import {
+  Button,
   Divider,
   Grid,
   InputAdornment,
@@ -17,6 +18,9 @@ import { dashboardStyles } from "./styles";
 import { useCallback, useState } from "react";
 import SvgIcon from "../../components/icon/icon";
 import ChatPoppers from "../../components/poppers/chatPoppers";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { incremented, amountAdded } from "../../features/counter/counter-slice";
+import News, { useFetchNewsQuery } from "../../features/news/news-api-slice";
 
 export default function Dashboard() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -25,6 +29,17 @@ export default function Dashboard() {
   const [type, setType] = useState<string | undefined>("");
   const [isActive, setIsActive] = useState<boolean>(false);
   const [placement, setPlacement] = useState<PopperPlacementType>();
+
+  // redux value
+  const countValue = useAppSelector((state) => state.counter.value);
+  const dispatch = useAppDispatch();
+
+  //change value counter
+  function handleValueCounter() {
+    dispatch(amountAdded(2));
+  }
+  // fetch news
+  const { data = [], isFetching } = useFetchNewsQuery();
 
   //open chat poppers
   const handleOpenPoppers =
@@ -51,9 +66,6 @@ export default function Dashboard() {
       return handleOpenPoppers("top-end", "task");
     }
   };
-
-  console.log(isActive, "active");
-  console.log(isOpen, "open");
 
   //open close
   const toggleSlider = useCallback(() => {
@@ -102,7 +114,22 @@ export default function Dashboard() {
             />
           </Grid>
         </Grid>
-
+        {/* implement redux toolkit */}
+        <Button onClick={handleValueCounter}>count is : {countValue}</Button>
+        {/* <>
+          <div>
+            <p> number of news fetched : {data.length}</p>
+          </div>
+          {data.data.map((news: News) => {
+            return (
+              <div>
+                <p>author : {news.author}</p>
+                <p>news :{news.content}</p>
+              </div>
+            );
+          })}
+        </> */}
+        {/* implement redux toolkit */}
         <Grid
           display="flex"
           justifyContent={"flex-end"}
